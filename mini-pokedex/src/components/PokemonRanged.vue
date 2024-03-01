@@ -23,6 +23,8 @@
                     <h3>Nombre del pokemon: {{ pk.nombre }}</h3>
                     <h3>Id global del pokemon: {{ pk.id }}</h3>
                     <h3>Movimiento: {{ pk.move }}</h3>
+                    <img v-bind:src="pk.sprite-front" alt="">
+                    <img v-bind:src="pk.sprite-back" alt="">
                 </div>
             </div>
         </div>
