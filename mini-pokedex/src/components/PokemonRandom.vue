@@ -2,7 +2,7 @@
     <title>Mini Pokedex</title>
     <h3>Datos de pokemon aleatorio</h3>
 
-    <div v-if="pokemons!=null">
+    
         <div class="row" id="tarjeta">
         <div class="col-md-4" v-for="pokemon in pokemons" v-bind:key=pokemon.id>
             <div class="card bg-primary">
@@ -17,12 +17,12 @@
             </div>
         </div>
     </div>
-    </div>
+    
     <button class="btn btn-secondary" @click="data_reception()">Actualizar</button>
 </template>
 
 <script>
-import { getRandomPokemon } from '../services/pokemon-service';
+import {getRandomPokemon} from '../services/pokemon-service'
 export default{
     name: 'getRandomPokemon',
     data(){
@@ -42,7 +42,5 @@ export default{
 </script>
 
 <style scoped>
-    #tarjeta{
-        position: relative;
-    }
+    
 </style>

@@ -6,7 +6,7 @@ Pokemon_information.getByID = async (id) => {
     try{
         const pokemon_requested =  await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
         const pokemon_data = await pokemon_requested.json(); //toda la información del pokemon en formato json
-        let formatted_pokemon_data = formatPokemon_info(pokemon_data);
+        let formatted_pokemon_data = [formatPokemon_info(pokemon_data)];
         console.log(formatted_pokemon_data);
         return formatted_pokemon_data;
     }catch(err){
@@ -23,7 +23,8 @@ Pokemon_information.getRandom = async () => {
         let random_id = getRandomInt(last_pokemon);
         const pokemon_requested =  await fetch(`https://pokeapi.co/api/v2/pokemon/${random_id}`);
         const pokemon_data = await pokemon_requested.json(); //toda la información del pokemon en formato json
-        let data = formatPokemon_info(pokemon_data);
+        let data = [formatPokemon_info(pokemon_data)];
+        console.log(data);
         return data;
     }catch(err){
         console.log(err);
@@ -47,7 +48,7 @@ Pokemon_information.getRanged = async (initial_ID, pokemon_quantity) => {
             const pokemon_data = await pokemon_requested.json(); //toda la información del pokemon en formato json
             let temp_data = formatPokemon_info(pokemon_data)
             formatted_pokemon_data_for.push(temp_data);
-            console.log(temp_data);
+            //console.log(temp_data);
         }
         
         console.log(formatted_pokemon_data_for);
