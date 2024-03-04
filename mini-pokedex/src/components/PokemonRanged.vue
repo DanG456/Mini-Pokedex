@@ -2,6 +2,7 @@
     <title>Mini Pokedex</title>
     <br>
     <br>
+    <h3>Obtención de un listado de pokemons</h3>
     <div id="entradas-info">
         <p>Ingrese aqui el nombre o número del pokemon inicial: </p>
         <input type="text" v-model="pk_starter">
@@ -11,7 +12,7 @@
         <input type="text" v-model="range">
         <br>
         <br>
-        <button id="pokemon_id" @click="data_ranged_reception(pk_starter,range)">Ver información</button>
+        <button id="pokemon_id" @click="data_ranged_reception(pk_starter,range)" class="btn btn-success">Ver información</button>
         
         <br>
     </div>
@@ -19,7 +20,7 @@
 
     <div class="row" id="tarjeta">
         <div class="col-md-5" v-for="pk in pokemons" v-bind:key=pk.id>
-            <div class="card bg-primary">
+            <div class="card bg-info">
                 <div class="card-header">
                     <!--<img src={{ pokemon.sprite-front }} alt="">-->
                     <h3>Nombre del pokemon: {{ pk.nombre }}</h3>

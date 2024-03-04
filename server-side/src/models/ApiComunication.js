@@ -11,7 +11,7 @@ Pokemon_information.getByID = async (id) => {
         return formatted_pokemon_data;
     }catch(err){
         console.log(err);
-        return("Error, el pokemon indicado no existe, prueba ingresarlo de nuevo")
+        return [{'err': "Error, el pokemon indicado no existe, prueba ingresarlo de nuevo"}];
         
     }
 }
@@ -28,7 +28,7 @@ Pokemon_information.getRandom = async () => {
         return data;
     }catch(err){
         console.log(err);
-        return("Error, no se pudo obtener la lista de pokemons en el rango especificado.\n Por favor intente de nuevo verifique que sus valores sean correctos");
+        return [{'err': "Hubo un problema al recuperar un pokemon.\n Por favor intente de nuevo verifique que sus valores sean correctos"}];
     }
 }
 
@@ -37,7 +37,7 @@ Pokemon_information.getRanged = async (initial_ID, pokemon_quantity) => {
     try{
         let formatted_pokemon_data_for = [];
         const pokemon_requested =  await fetch(`https://pokeapi.co/api/v2/pokemon/${initial_ID}`);
-        const pokemon_data = await pokemon_requested.json(); //toda la información del pokemon en formato json
+        const pokemon_data = await pokemon_requested.json(); //toda la información del pokemon marcado para iniciar en formato json
         let formatted_initial_data = format_info(pokemon_data);
 
         let id_request = formatted_initial_data[1]; //numero de id del pokemon solicitado
@@ -45,16 +45,16 @@ Pokemon_information.getRanged = async (initial_ID, pokemon_quantity) => {
 
         for(var i=id_request;i<=id_limit_count;i++){
             const pokemon_requested =  await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-            const pokemon_data = await pokemon_requested.json(); //toda la información del pokemon en formato json
+            const pokemon_data = await pokemon_requested.json(); //toda la información del pokemon en la iteración en formato json
             let temp_data = formatPokemon_info(pokemon_data)
             formatted_pokemon_data_for.push(temp_data);
-            //console.log(temp_data);
         }
         
         console.log(formatted_pokemon_data_for);
         return formatted_pokemon_data_for;
     }catch(err){
         console.log(err);
+        return [{'err':"Error!. Campos vacios o incorrectos, por favor verifique la información que ingreso"}];
     }
 }
 //Funcion para dar formato a la información
@@ -69,8 +69,13 @@ function formatPokemon_info(pokemon_data){
     for(var i=0; i<pokemon_moves.length;i++){
         moves_names.push(pokemon_moves[i][0][0]);
     }
+    if(pokemon_sprite_front == null){
+        pokemon_sprite_front = "La imagen de frente no está disponible para este pokemon"
+    }
+    if(pokemon_sprite_back == null){
+        pokemon_sprite_back = "La imagen de frente no está disponible para este pokemon"
+    }
     let single_move = getRandomMove(moves_names);
-    //return [pokemon_name,pokemon_id,pokemon_sprite_front,pokemon_sprite_back,single_move];
     return {'nombre': pokemon_name,
             'id': pokemon_id,
             'sprite-front': pokemon_sprite_front,
@@ -90,13 +95,14 @@ function format_info(pokemon_data){
     for(var i=0; i<pokemon_moves.length;i++){
         moves_names.push(pokemon_moves[i][0][0]);
     }
+    if(pokemon_sprite_front == null){
+        pokemon_sprite_front = "La imagen de frente no está disponible para este pokemon"
+    }
+    if(pokemon_sprite_back == null){
+        pokemon_sprite_back = "La imagen de frente no está disponible para este pokemon"
+    }
     let single_move = getRandomMove(moves_names);
     return [pokemon_name,pokemon_id,pokemon_sprite_front,pokemon_sprite_back,single_move];
-    /*return {'nombre': pokemon_name,
-            'id': pokemon_id,
-            'sprite-front': pokemon_sprite_front,
-            'sprite-back': pokemon_sprite_back,
-            'move': single_move};*/
 }
 
 //De todos los movimientos que tiene el pokemon se elige uno al azar

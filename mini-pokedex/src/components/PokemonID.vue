@@ -7,17 +7,11 @@
         <p>Ingrese aqui el nombre o número del pokemon: </p>
         <input type="text" v-model="pokemon">
         <button  id="pokemon_id_btn" @click="data_reception_ID(pokemon)">Ver información</button>
-        <!--<form @submit.prevent="">
-            <label for="pokemon_id">Ingrese aqui el nombre o número del pokemon: </label>
-            <input type="text" class= "form-control" id="nombre" v-model="pokemon">
-            <button class="btn btn-dark" type="submit" id="pokemon_id_btn">Ver información</button>
-        </form>
-        -->
     </div>
 
     <div class="row" id="tarjeta" v-if="pokemons!=null">
         <div class="col-md-4" v-for="pk in pokemons" v-bind:key=pk.id>
-            <div class="card bg-primary">
+            <div class="card bg-info">
                 <div class="card-header">
                     <!--<img src={{ pokemon.sprite-front }} alt="">-->
                     <h3>Nombre del pokemon: {{ pk.nombre }}</h3>
