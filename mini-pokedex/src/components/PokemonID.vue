@@ -6,7 +6,19 @@
     <div id="entradas-info">
         <p>Ingrese aqui el nombre o número del pokemon: </p>
         <input type="text" v-model="pokemon">
-        <button  id="pokemon_id_btn" @click="data_reception_ID(pokemon)">Ver información</button>
+        <br>
+        <br>
+        <button  id="pokemon_id_btn" @click="data_reception_ID(pokemon)" class="btn btn-dark">Ver información</button>
+    </div>
+
+    <div class="row" id="tarjeta" v-if="pokemons===null">
+        <div class="col-md-4" v-for="pk in pokemons" v-bind:key=pk.id>
+            <div class="card bg-info">
+                <div class="card-header">
+                    <h3>{{ pk.err }}</h3>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row" id="tarjeta" v-if="pokemons!=null">

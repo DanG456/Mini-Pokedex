@@ -2,21 +2,23 @@
     <title>Mini Pokedex</title>
     <br>
     <br>
-    <h3>Obtención de un listado de pokemons</h3>
-    <div id="entradas-info">
-        <p>Ingrese aqui el nombre o número del pokemon inicial: </p>
-        <input type="text" v-model="pk_starter">
-        <br>
-        <br>
-        <p>Selecciona cuantos pokemons después del anterior quieres ver: </p>
-        <input type="text" v-model="range">
-        <br>
-        <br>
-        <button id="pokemon_id" @click="data_ranged_reception(pk_starter,range)" class="btn btn-success">Ver información</button>
-        
+    <h1>Obtención de un listado de pokemons</h1>
+    <br>
+    <div  class="row" id="poke_starter">
+        <div class="col-md-3">
+            <p>Ingrese aqui el nombre o número del pokemon inicial: </p> <input type="text" v-model="pk_starter">
+            <br>
+            <br>
+            
+        </div>
+        <div class="col-md-3" >
+            <p>Selecciona cuantos pokemons después del anterior quieres ver: </p> <input type="text" v-model="range">
+            <br>
+            <br>
+        </div>
         <br>
     </div>
-
+    <button id="pokemon_id" @click="data_ranged_reception(pk_starter,range)" class="btn btn-success">Ver información</button>
 
     <div class="row" id="tarjeta">
         <div class="col-md-5" v-for="pk in pokemons" v-bind:key=pk.id>
@@ -60,5 +62,7 @@ export default{
 </script>
 
 <style scoped>
-    
+    #poke_starter{
+        padding-inline-start: 500px;
+    }
 </style>
